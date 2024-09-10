@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Base64 Encoder (3 veces)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>URL Base64 Encoder (3 veces)</h2>
+    
+    <label for="inputURL">URL:</label>
+    <textarea id="inputURL" placeholder="Ingrese la URL aquí"></textarea>
+
+    <button onclick="encodeURL()">Codificar a Base64 (3 veces)</button>
+
+    <label for="outputURL">Resultado:</label>
+    <textarea id="outputURL" readonly></textarea>
+
+    <button onclick="copyToClipboard()">Copiar al portapapeles</button>
+
+    <script>
+        function encodeURL() {
+            var inputURL = document.getElementById('inputURL').value;
+            
+            // Codificar la URL 3 veces
+            for (var i = 0; i < 3; i++) {
+                inputURL = btoa(inputURL);
+            }
+
+            document.getElementById('outputURL').value = inputURL;
+        }
+
+        function copyToClipboard() {
+            var outputURL = document.getElementById('outputURL').value;
+            if (outputURL) {
+                navigator.clipboard.writeText(outputURL)
+                    .then(function() {
+                        alert('URL copiada al portapapeles');
+                    })
+                    .catch(function(err) {
+                        alert('Error al copiar al portapapeles: ' + err);
+                    });
+            } else {
+                alert('No hay URL para copiar');
+            }
+        }
+    </script>
+</body>
+</html>
